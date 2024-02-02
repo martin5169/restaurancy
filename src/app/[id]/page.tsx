@@ -1,9 +1,10 @@
 import api from "../api";
 import Link from "next/link";
 
+
+
 export async function generateMetadata({params: {id}}: {params: {id: string}}) {
     const restaurant = await api.fetch(id);
-  
     return {
       title: `${restaurant.name} - Restaurancy`,
       description: restaurant.description,

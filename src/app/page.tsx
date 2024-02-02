@@ -3,7 +3,7 @@ import api from "./api";
 
 export default async function Home() {
   const restaurants = await api.list();
-  //console.log(restaurants)
+   
   return (
     <section className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
       {restaurants.map((restaurant) => {
@@ -15,7 +15,7 @@ export default async function Home() {
               src={restaurant.image}
             />
             <h2 className="inline-flex gap-2 text-lg font-bold">
-              <Link href={`/${restaurant.id}`}>{restaurant.name}</Link>
+              <Link prefetch={false} href={`/${restaurant.id}`}>{restaurant.name}</Link>
               <small className="inline-flex gap-1">
                 <span>⭐</span>
                 <span>{restaurant.score}</span>
