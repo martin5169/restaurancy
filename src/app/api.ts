@@ -1,3 +1,5 @@
+import { list } from "postcss";
+
 interface Restaurant {
   id: string;
   name: string;
@@ -46,6 +48,27 @@ const api = {
 
     return restaurant;
   },
+
+  search: async (query: string): Promise<Restaurant[]> => {
+    const results = await api.list()
+
+    // Verificar si el query está vacío o es undefined
+    if (!query || query.trim() === "") {
+      return results;
+    }
+    // Si hay query se filtra por nombre
+    else{
+
+      const filtrados = results.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(query.toLowerCase())
+      )
+      return filtrados;
+    
+    }
+   
+
+  },
+  
 };
 
 export default api;
